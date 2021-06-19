@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+        function findMin(arr) {
+            let min = arr[0];
+            for( let i =0; i< arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i]
+                }
+            }
+            return min;
+        }
+
+        function findMax(arr) {
+            let max = arr[0];
+            for( let i =0; i< arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i]
+                }
+            }
+            return max;
+        }
+
+        let myArr = [];
+        for (let i = 0; i< 100; i++) {
+            myArr[i] = Math.floor(Math.random() * 100 + 1);
+            document.write(myArr[i] + '<br/>');
+        }
+        let minValue = findMin(myArr);
+        let maxValue = findMax(myArr);
+        console.log('Gia tri nho nhat cua mang la: ' +minValue);
+        console.log('Gia tri lon nhat cua mang la: ' +maxValue);
+    </script>
+</body>
+</html>
