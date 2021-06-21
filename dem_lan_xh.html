@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    
+    let myArr = [];
+    let is_found = false;
+    let seek_number = parseInt(prompt('Input a number that you want to search: '));
+    let count = 0;
+    for (let i = 0; i< 100; i++) {
+        myArr[i] = Math.floor(Math.random() * 100 + 1);
+        document.write(myArr[i] + '<br/>');
+    }
+    checkNumber(seek_number);
+    countNumber(seek_number);
+    
+    function checkNumber(seek_number) {
+        for ( let i = 0 ; i < myArr.length; i++) {
+            if(seek_number == myArr[i]) {
+                document.write(seek_number + ' ton tai trong mang o chi so ' + i + '<br/>');
+                is_found = true;
+                count++;
+            }
+        }
+        if ( is_found == false) {
+            document.write(seek_number + ' khong ton tai trong mang <br/>');
+        }
+    }
+    
+    function countNumber(seek_number) {
+        if (is_found) {
+            document.write(seek_number + ' xuat hien ' + count + ' lan trong mang'); 
+        }
+    }
+    
+</script>
