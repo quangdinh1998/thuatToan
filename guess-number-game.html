@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <label for="inputValue"> Box to input your Guess Number </label>
+    <input type="text" id="inputValue">
+    <button onclick="guess_btn()">Guess</button>
+    <p id="result">Result</p>
+    <p id="timeProcess">Time Process</p>
+</body>
+</html>
+
+<script>
+    let result = '';
+    let timeProcess = '';
+    let myArr = [];
+    for (let index = 0; index < 100 ; index++) {
+        myArr[index] = index +1;
+        document.write(myArr[index] + ' - ');
+    }
+    let is_found = false;
+    let secretNumber = 82;
+    let start = 0;
+    let end = myArr.length -1;
+    
+
+    function searchBinary() {
+        
+        let inputValue = document.getElementById('inputValue').value;
+        let guessNumber = Math.floor(+inputValue);
+        while(start <= end) {
+            let middle = Math.floor((start+end)/2);
+            if(myArr[middle] === guessNumber) {
+                is_found = true;
+                break;
+            } if ( guessNumber > myArr[middle]) {
+                start= middle +1;
+                
+            } else {
+                end = middle -1;
+            }
+
+        }
+        if (is_found == false){
+            result = guessNumber + ' khong ton tai trong mang';
+            start = 0;
+            end = myArr.length -1;
+        } else {
+            if(guessNumber <secretNumber) {
+                    result = 'Result: Your guess number too low';
+            }
+            if( guessNumber > secretNumber) {
+                result= 'Result: Your guess number too high';
+            }
+            if(guessNumber==secretNumber) {
+                    result = 'Result: You win!';
+            }
+            start = 0;
+            end = myArr.length -1;
+            is_found = false;
+        }
+    }
+    
+    function searchLinear() {
+        let inputValue = document.getElementById('inputValue').value;
+        let guessNumber = Math.floor(+inputValue);
+        for ( let i = 0 ; i < myArr.length; i++) {
+            if (guessNumber == myArr[i]) {
+                is_found = true;
+            }
+        }
+        if ( is_found == false) {
+            result = 'Result: ' + guessNumber + ' khong ton tai trong mang';
+        } else {
+            if(guessNumber <secretNumber) {
+                    result = 'Result: Your guess number too low';
+            }
+            if( guessNumber > secretNumber) {
+                result= 'Result: Your guess number too high';
+            }
+            if(guessNumber==secretNumber) {
+                    result = 'Result: You win!';
+            }
+            is_found = false;
+        }
+
+        
+    }
+
+
+    function guess_btn() {
+        
+        let startTime = performance.now();
+        // searchBinary();
+        searchLinear();
+        let endTime = performance.now();
+        timeProcess = 'Time Process: ' + (endTime - startTime);
+        document.getElementById('result').innerHTML = result;
+        document.getElementById('timeProcess').innerHTML = timeProcess;
+        
+    }
+</script>
